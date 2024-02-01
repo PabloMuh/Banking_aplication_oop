@@ -48,6 +48,7 @@ class account():
             raise AbortTransaction("You are unable to withdraw this value")
 
     def show_transactions(self):
+        self.checkPassword()
         i = 1
         for transactions in self.history:
             print(f"{i} - {transactions}")

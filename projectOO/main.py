@@ -7,25 +7,31 @@ account_list = []
 check = True
 
 while True:
-    clear_terminal()
-    print("Welcome to Metropolitan Bank")
-    print("What do you want to do?")
-    print("1 - register an account")
-    print("2 - access your account")
-    print("3 - support about the operations")
-    print("4 - quit the operation")
-
-    choice = int(input("Type your choice: "))
+    while True:
+        clear_terminal()
+        print("Welcome to Metropolitan Bank")
+        print("What do you want to do?")
+        print("1 - register an account")
+        print("2 - access your account")
+        print("3 - support about the operations")
+        print("4 - quit the operation")
+        try:
+            choice = int(input("Type your choice: "))
+            break
+        except ValueError:
+            clear_terminal()
+            print("Must be a Integer")
+            time.sleep(3)
 
     if choice == 1:
         clear_terminal()
         code = input("Type your New Code Account(made up of letters and numbers): ")
         password = input("Type your New Password: ")
-        check_object = account(code,password)
+        check_object = access_account(code,password)
 
         while any(check_object.code == obj.code for obj in account_list):
             code = input("This code account already exists, please choose another combination: ")
-            check_object = account(code,password)
+            check_object = access_account(code,password)
 
         account_list.append(check_object)
         print("Account created successfully")
@@ -40,7 +46,7 @@ while True:
         for obj in account_list:
             if code == obj.code and password == obj.password:
                 clear_terminal()
-                access_account(obj,account_list)
+                obj.access(account_list)
                 check = False
 
         if check:

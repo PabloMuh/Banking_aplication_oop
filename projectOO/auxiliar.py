@@ -59,7 +59,7 @@ def support():
         print("You chose to convert your money to another currency.")
 
     elif choice == 9:
-        print("you chose to make aloan on the bank.")
+        print("you chose to make a loan on the bank.")
 
     else:
         print("Invalid choice, please select another")
